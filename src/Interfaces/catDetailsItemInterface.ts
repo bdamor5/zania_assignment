@@ -3,5 +3,5 @@ export interface CatDetailsItemInterface {
     type: string;
     title: string;
     position: number;
-    img: string
+    img: string,
 }
