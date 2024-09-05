@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# Zania Assignment For Frontend Position made with React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+### To run the project 
 
 ```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+npm install
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+npm run dev
 ```
+# Insights
+* Styling was achieved using `Tailwind` and drag-and-drop feature was implemented using `@dnd-kit` package. Also have used `lodash` & `uuid` packages for accessibilities.
+* To perform a drag-and-drop operation for a card, grab the card from the top-right 'grab' icon.
+* To observe the `image overlay feature`, click on a card. Also, you can close the overlay by clicking on the `top-right icon` or by pressing the `ESC` key.
+* Have added `3 seconds` of delay for both fetching & saving responses to make loaders visible.
+* Lists state is managed using `useContext` Api. Also saving both lists & last updated time in the Local storage to keep data consistent in the application.
+
+# Future Improvements 
+* Adding a key-based or arrow-based navigation in the image overlay to browse through all the available cards.
+* Adding a custom button to save the list changes.
+* Infinite loading for displaying more cards.
