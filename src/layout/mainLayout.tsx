@@ -1,15 +1,8 @@
-import React from "react";
-import { cn } from "../utils/cn";
+import { ReactNode } from "react";
 
-const MainLayout = ({
-  className,
-  children,
-}: {
-  className: string;
-  children: React.ReactNode;
-}) => {
+const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className={cn("min-h-[100vh] bg-[#0F172A] p-2", className)}>
+    <div className="min-h-[100vh] bg-gradient-to-b from-slate-900 to-slate-700 p-2 font-sans">
       {children}
     </div>
   );

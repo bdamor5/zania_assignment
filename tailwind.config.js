@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}", // <= no spaces
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Open Sans", "ui-sans-serif", "system-ui"],
+      },
+    },
   },
   plugins: [],
 };

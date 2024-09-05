@@ -1,42 +1,28 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { savingListsApi } from "../apis/savingListsApi";
-import { debounce, isEqual } from "lodash";
 import { SortedListInterface } from "../Interfaces/sortedListInterface";
 
 const useSavingData = (listState: SortedListInterface[], timer = 5000) => {
-  const [timerStatus, setTimerStatus] = useState<boolean>(true);
+  const [savingStatus, setSavingStatus] = useState<boolean>(false);
 
-  const storedLists = localStorage.getItem("lists")
-    ? JSON.parse(localStorage.getItem("lists") || "")
-    : "";
+  let savingUpdatedLists = () => {
+    console.log("00000-save");
+    savingListsApi(setSavingStatus, listState);
+  };
 
+  //for every interval of 'timer' seconds, we will invoke savingUpdatedLists which handles making the save api call only when the change to the lists is made
   useEffect(() => {
     let interval = setInterval(() => {
-      console.log("0-check", storedLists, listState);
-      if (isEqual(listState, storedLists)) {
-        console.log("1-equal");
-        setTimerStatus(false);
-      } else {
-        console.log("2-not-equal");
-        setTimerStatus(true);
-      }
+      savingUpdatedLists();
     }, timer);
 
+    //cleaning the interval
     return () => {
       clearInterval(interval);
     };
-  }, [timerStatus, listState, localStorage.getItem("lists")]);
+  }, [savingStatus, listState]);
 
-  let savingUpdatedLists = () => {
-    savingListsApi(setTimerStatus, listState);
-  };
-
-  if (timerStatus && listState?.length) {
-    console.log("3-api-call");
-    debounce(savingUpdatedLists, 500);
-  }
-
-  return [timerStatus];
+  return [savingStatus];
 };
 
 export default useSavingData;

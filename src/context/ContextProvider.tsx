@@ -1,14 +1,14 @@
-import React, { createContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { SortedListInterface } from "../Interfaces/sortedListInterface";
 
 interface ContextType {
   listState: SortedListInterface[];
-  setListState: React.Dispatch<React.SetStateAction<SortedListInterface[]>>;
+  setListState: Dispatch<SetStateAction<SortedListInterface[]>>;
 }
 
 export const Context = createContext<ContextType | undefined>(undefined);
 
-const ContextProvider = ({ children }: { children: React.ReactNode }) => {
+const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [listState, setListState] = useState<SortedListInterface[]>([]);
   return (
     <Context.Provider value={{ listState, setListState }}>

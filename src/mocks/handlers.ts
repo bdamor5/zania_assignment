@@ -4,14 +4,18 @@ import { v4 as uuidv4 } from "uuid";
 
 export const handlers = [
 
+  //get - to fetch lists
   http.get('get/lists', () => {
 
     let lists = []
 
     const storedLists = localStorage.getItem('lists');
+
+    //if the lists key is present in the LS, then we will simply initialize with it
     if (storedLists) {
       lists = JSON.parse(storedLists)
     } else {
+      //but if there is no lists key present in LS, then we will save it to the LS
       lists = [
         {
           id: uuidv4(),
@@ -51,6 +55,7 @@ export const handlers = [
       ];
       localStorage.setItem('lists', JSON.stringify(lists))
 
+      //same as lists key, if no 'lastSavedTime' key is present in Ls, then will save the current time as we are already saving the list in LS at current time
       if (!localStorage.getItem("lastSavedTime")) {
         const now = new Date();
 
@@ -61,19 +66,20 @@ export const handlers = [
     return HttpResponse.json({ data: lists }, { status: 200 });
   }),
 
+  //post - save changes made to lists to LS
   http.post("post/lists", async ({ request }) => {
     const lists = await request.json();
-    console.log(lists);
 
+    //saving payload to LS
     localStorage.setItem('lists', JSON.stringify(lists))
 
+    //will update the lastSavedTime to the current time 
     const now = new Date();
     localStorage.setItem("lastSavedTime", now.toLocaleString());
 
     return HttpResponse.json(
       {
         message: "Success",
-        data: lists,
       },
       { status: 200 },
     );

@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import ContextProvider from "./context/ContextProvider.tsx";
+import MainLayout from "./layout/mainLayout.tsx";
 
 async function enableMocking() {
   if (import.meta.env.PROD) {
@@ -20,7 +21,9 @@ enableMocking().then(() => {
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <ContextProvider>
-        <App />
+        <MainLayout>
+          <App />
+        </MainLayout>
       </ContextProvider>
     </StrictMode>
   );

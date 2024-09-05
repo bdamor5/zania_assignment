@@ -3,9 +3,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "../../utils/cn";
 import { Dispatch, SetStateAction } from "react";
-import useLoading from "../../hooks/useLoading";
 
-const CatDetailsItem = ({
+const DetailsItem = ({
   item,
   setSelectedId,
 }: {
@@ -33,9 +32,9 @@ const CatDetailsItem = ({
     <div
       ref={setNodeRef}
       style={style}
-      {...attributes} // Attach attributes to the entire item
+      {...attributes}
       className={cn(
-        "bg-[#273a57] border-2 border-slate-300 hover:border-[#75aaff] w-60 h-auto rounded-lg shadow-md ",
+        "bg-[#273a57] border border-slate-600 hover:border-[#75aaff] w-60 h-auto rounded-lg shadow-xl ",
         isDragging ? "opacity-75" : ""
       )}
       onClick={() => {
@@ -43,11 +42,11 @@ const CatDetailsItem = ({
         window.scrollTo(0, 0);
       }}
     >
-      <div className="bg-white rounded-md rounded-b-none text-center bold relative">
+      <div className="bg-[#8CBCFF] text-slate-900 font-bold rounded-md rounded-b-none text-center bold relative">
         {title}
         <div
           className="absolute top-0.5 right-1.5 cursor-grab"
-          {...listeners} // Apply listeners only to the drag handle
+          {...listeners} // Apply listeners only to this icon drag handle
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -70,4 +69,4 @@ const CatDetailsItem = ({
   );
 };
 
-export default CatDetailsItem;
+export default DetailsItem;
