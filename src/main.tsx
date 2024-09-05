@@ -6,9 +6,9 @@ import ContextProvider from "./context/ContextProvider.tsx";
 import MainLayout from "./layout/mainLayout.tsx";
 
 async function enableMocking() {
-  if (import.meta.env.PROD) {
-    return;
-  }
+  // if (import.meta.env.PROD) {
+  //   return;
+  // }
 
   const { worker } = await import("./mocks/browser");
 
