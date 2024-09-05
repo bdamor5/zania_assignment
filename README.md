@@ -20,3 +20,5 @@ npm run dev
 * Adding a key-based or arrow-based navigation in the image overlay to browse through all the available cards.
 * Adding a custom button to save the list changes.
 * Infinite loading for displaying more cards.
+
+# Thank You !
